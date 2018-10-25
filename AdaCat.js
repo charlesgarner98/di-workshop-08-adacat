@@ -5,6 +5,7 @@ class AdaCat {
     this.hunger = 5 //Sets cat's hunger
     this.isSleeping = false //Sets cat to awake
     this.size = 30 //Sets cat size
+    this.tiredness = 0 //Sets cat's tiredness
   }
 
   setHunger(newHunger) {
@@ -15,6 +16,16 @@ class AdaCat {
       newHunger = 10 //Sets upper limit to 10
     }
     this.hunger = newHunger //Sets cat's hunger
+  }
+
+  setTiredness(newTiredness) {
+    if (newTiredness < 0) {
+      newTiredness = 0 //Sets lower limit to 0
+    }
+    if (newTiredness > 15) {
+      newTiredness = 15 //Sets upper limit to 15
+    }
+    this.tiredness = newTiredness //Sets cat's tiredness
   }
 
   getDescription() {
@@ -31,7 +42,8 @@ class AdaCat {
 
       'they weigh ' + this.size + ' tonnes.',
       'their health is ' + this.getHealth() + '/30.',
-      sleepLine
+      sleepLine,
+      'their tiredness is ' +this.tiredness + '/15.'
     ]
 
     return lines.join('\n') //Return string of cats desription
@@ -39,16 +51,19 @@ class AdaCat {
 
   feed() {
     var hunger = this.hunger - 1 //Reduces hunger
+    var tiredness = this.tiredness + 1 //Increases tiredness
 
     if (hunger < 3) {
       this.size = this.size + 1 //Increase size if hunger is lower than 3
     }
 
     this.setHunger(hunger) //call setHunger method
+    this.setTiredness(tiredness) //call setTiredness method
   }
 
   nap() {
     this.isSleeping = true //Sets cat to sleeping
+    this.setTiredness(0) //Reset cat's tiredness
   }
 
   wakeUp() {
@@ -57,10 +72,13 @@ class AdaCat {
 
   play() {
     var hunger = this.hunger + 3 //Add hunger
+    var tiredness = this.tiredness + 3 //Increases tiredness
+
     if (hunger > 7) {
       this.size = this.size - 1 //Reduce size if cat's hunger is greater than 7
     }
     this.setHunger(hunger) //Calls setHunger method
+    this.setTiredness(tiredness) //call setTiredness method
   }
 
   getHealth() {

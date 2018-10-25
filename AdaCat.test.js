@@ -86,10 +86,24 @@ describe('AdaCat', function() {
       var lines = result.split('\n')
       expect(lines[3]).to.equal('their health is 25/30.')
     })
+
+    //Testing description line 6 displays tiredness
+    it('includes the tiredness level', function() {
+      var myCat = new AdaCat('professor plum', 'alex')
+      var result = myCat.getDescription()
+      var lines = result.split('\n')
+      expect(lines[5]).to.equal('their tiredness is 0/15.')
+    })
   })
 
   //Testing feed method
   describe('#feed', function() {
+    //Tests that tiredness is increased by 1 when fed
+    it('increases tiredness by 1', function() {
+      var myCat = new AdaCat('hungry', 'charlie')
+      myCat.feed()
+      expect(myCat.tiredness).to.equal(1)
+    })
     //Tests that hunger reduces when fed
     it('decreases the hunger attribute by 1', function() {
       var myCat = new AdaCat('mittens', 'alex')
@@ -120,6 +134,13 @@ describe('AdaCat', function() {
       myCat.nap()
       expect(myCat.isSleeping).to.equal(true)
     })
+    //Testing cat's tiredness is set back to 0
+    it('sets tiredness value to 0', function() {
+      var myCat = new AdaCat('tiredCat', 'charlie')
+      myCat.tiredness = 15
+      myCat.nap()
+      expect(myCat.tiredness).to.equal(0)
+    })
   })
 
   //Testing wakeUp method
@@ -135,6 +156,12 @@ describe('AdaCat', function() {
 
   //Testing play method
   describe('#play', function() {
+    //Tests that tiredness is increased by 3 when played with
+    it('increases tiredness by 3', function() {
+      var myCat = new AdaCat('lucky', 'charlie')
+      myCat.play()
+      expect(myCat.tiredness).to.equal(3)
+    })
     //Tests that hunger is increased when played with
     it('increases hunger by 3', function() {
       var myCat = new AdaCat('zebra', 'alex')
