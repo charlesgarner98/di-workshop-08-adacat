@@ -1,29 +1,30 @@
 class AdaCat {
   constructor(name, owner) {
-    this.name = name
-    this.owner = owner
-    this.hunger = 5
-    this.isSleeping = false
-    this.size = 30
+    this.name = name //Sets name of cat
+    this.owner = owner //Sets owner of cat
+    this.hunger = 5 //Sets cat's hunger
+    this.isSleeping = false //Sets cat to awake
+    this.size = 30 //Sets cat size
   }
 
   setHunger(newHunger) {
     if (newHunger < 0) {
-      newHunger = 0
+      newHunger = 0 //Sets lower limit to 0
     }
     if (newHunger > 10) {
-      newHunger = 10
+      newHunger = 10 //Sets upper limit to 10
     }
-    this.hunger = newHunger
+    this.hunger = newHunger //Sets cat's hunger
   }
 
   getDescription() {
-    var sleepLine
-    if (this.isSleeping) {
-      sleepLine = 'Shh! ' + this.name + ' is sleeping.'
+    var sleepLine //Creates variable to store a string for if cat is asleep
+    if (this.isSleeping) { //If cat is sleeping
+      sleepLine = 'Shh! ' + this.name + ' is sleeping.' //Set string to sleeping
     } else {
-      sleepLine = this.name + ' is awake.'
+      sleepLine = this.name + ' is awake.' //Set string to awake
     }
+    //An array to store lines for cat's description
     var lines = [
       this.name + ' is a cat. they belong to ' + this.owner + '.',
       'their hunger level is ' + this.hunger + '/10.',
@@ -33,33 +34,33 @@ class AdaCat {
       sleepLine
     ]
 
-    return lines.join('\n')
+    return lines.join('\n') //Return string of cats desription
   }
 
   feed() {
-    var hunger = this.hunger - 1
+    var hunger = this.hunger - 1 //Reduces hunger
 
     if (hunger < 3) {
-      this.size = this.size + 1
+      this.size = this.size + 1 //Increase size if hunger is lower than 3
     }
 
-    this.setHunger(hunger)
+    this.setHunger(hunger) //call setHunger method
   }
 
   nap() {
-    this.isSleeping = true
+    this.isSleeping = true //Sets cat to sleeping
   }
 
   wakeUp() {
-    this.isSleeping = false
+    this.isSleeping = false //Sets cat to awake
   }
 
   play() {
-    var hunger = this.hunger + 3
+    var hunger = this.hunger + 3 //Add hunger
     if (hunger > 7) {
-      this.size = this.size - 1
+      this.size = this.size - 1 //Reduce size if cat's hunger is greater than 7
     }
-    this.setHunger(hunger)
+    this.setHunger(hunger) //Calls setHunger method
   }
 
   getHealth() {

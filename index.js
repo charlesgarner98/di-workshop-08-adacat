@@ -1,4 +1,4 @@
-var CommandLineApp = require('./CommandLineApp')
+var CommandLineApp = require('./CommandLineApp') //Inlude CommandLineApp
 
-var app = new CommandLineApp()
-app.start()
+var app = new CommandLineApp() //Create app
+app.start() //Start app
